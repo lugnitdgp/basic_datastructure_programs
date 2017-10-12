@@ -72,7 +72,7 @@ void delete_node(int num,int del)
     
 	while(del<num&&i<del)
 	{
-		printf("hello");
+		//printf("hello");
 		prev=temp;
 		temp=temp->link;
 		i=i+1;
