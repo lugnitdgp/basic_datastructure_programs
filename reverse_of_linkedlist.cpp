@@ -55,23 +55,14 @@ void displaylist()
 
 	}
 //function to reverselist	
-void reverse()
+void reverse(struct Node *header)
 	{
-		struct Node*prev=NULL;
-		struct Node* temp=header;
-		struct Node*next;
-		while(temp!=NULL)
-		{
-			next=temp->link;
-			temp->link=prev;
-			prev=temp;
-			temp=next;
-		}
-		header=prev;
-		printf("\n\nAfter Reversing\n ");
-		displaylist();
+		struct Node*prev=header;
+		if(prev==NULL)
+		return;
+		reverse(prev->link);
+		printf("%d ",prev->data);
 	}	
-	
 	
 //Main Body
 int main()
@@ -81,5 +72,6 @@ int main()
 	scanf("%d",&num);
 	createlist(num);//call to createlist
 	displaylist();//call to displaylist
-	reverse();//call to reverse list
+	printf("\nAfter reversing\nElements Of List:");
+	reverse(header);//call to reverse list
 }
