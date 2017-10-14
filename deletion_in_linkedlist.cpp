@@ -70,30 +70,20 @@ void delete_node(int num,int del)
 		free(temp);
 	}
     
-	while(del<num&&i<del)
+	else if(del<=num)
 	{
-		printf("hello");
+	    while(i<del)
+	    {
+		printf("hello ");
 		prev=temp;
 		temp=temp->link;
 		i=i+1;
-	}
+	    }
 	prev->link=temp->link;
 	free(temp);
 	temp=header;
-	
-	if(num==del)
-	{
-		printf("byee");
-		while(temp!=NULL)
-		{
-		prev=temp;
-		temp=temp->link;	
-		}
-		prev->link=NULL;
-		free(temp);
 	}
-	
-	displaylist();
+displaylist();
 }
 
 
@@ -110,4 +100,3 @@ int main()
 	delete_node(num,del);
 	return 0;
 }
-
