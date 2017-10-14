@@ -49,6 +49,7 @@ int main()
 		cout<<"\n2. Pop";
 		cout<<"\n3. Print";
          	cout<<"\n4. Print topmost element:";
+		cout<<"\n5. Quit:";
        		cout<<"\nEnter Your Choice : ";
 		cin>>ch;
 		if (ch==1)
@@ -69,7 +70,7 @@ int main()
 		{
 		       topmost();
 		}
-		elseif(ch==5)
+		else if(ch==5)
 		{
 		 	break;
 		}
