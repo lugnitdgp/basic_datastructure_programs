@@ -48,8 +48,8 @@ int main()
 		cout<<"\n1. Push";
 		cout<<"\n2. Pop";
 		cout<<"\n3. Print";
-        cout<<"\n4. Print topmost element:";
-        cout<<"\nEnter Your Choice : ";
+         	cout<<"\n4. Print topmost element:";
+       		cout<<"\nEnter Your Choice : ";
 		cin>>ch;
 		if (ch==1)
 		{
@@ -65,10 +65,14 @@ int main()
 		{
 			show();
 		}
-        else if(ch==4)
-        {
-            topmost();
-        }
+       		 else if(ch==4)
+		{
+		       topmost();
+		}
+		elseif(ch==5)
+		{
+		 	break;
+		}
 	}while(ch!=0);
 
 	return 0;
