@@ -2,29 +2,28 @@
 using namespace std;
 
 int stack[100001];
-int top=0;
+int top=0;//Top is a variable which indicates the index of the stack at a particular instant
 
 void push(int x)
 {
-	if(top==100001)
+	if(top==100001)//Conditon to check if the stack is full
 	{
 		cout<<"\nOverflow";
 	}
 	else
 	{
-		stack[top++]=x;
+		stack[top++]=x;//Inserts the element in the stack
 	}
 }
 
-void pop()
-{
-	if (top==0)
+void popempty
+	if (top==0)//Conditon to check if the stack is empty
 	{
 		cout<<"\nUnderflow";
 	}
 	else
 	{
-		cout<<"\n"<<stack[--top]<<" deleted";
+		cout<<"\n"<<stack[--top]<<" deleted";//Deletion operation performed
 	}
 }
 
@@ -32,13 +31,13 @@ void show()
 {
 	for (int i = 0; i < top; i++)
 	{
-		cout<<stack[i]<<"\n";
+		cout<<stack[i]<<"\n";//Displays the contents of the stack
 	}
 }
 
 void topmost()
 {
-    cout << "\nTopmost element: "<<stack[top-1];
+    cout << "\nTopmost element: "<<stack[top-1];//Prints the topmost element
 }
 int main()
 {
