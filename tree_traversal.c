@@ -98,7 +98,7 @@ int main()
 	copy_node->right->left=newNode(0);
 	copy_node->right->right=newNode(0);
 
-	struct Node *root=newNode(1);
+	struct Node *root=newNode(1);//Initialization of tree 'Root'
 	root->left=newNode(2);
 	root->right=newNode(3);
 	root->left->left=newNode(5);
@@ -106,7 +106,7 @@ int main()
 	root->right->left=newNode(6);
 	root->right->right=newNode(7);
 
-	struct Node *root1=newNode(1);
+	struct Node *root1=newNode(1);//Initialization of tree 'Root1'
 	root1->left=newNode(2);
 	root1->right=newNode(3);
 	root1->left->left=newNode(15);
@@ -118,21 +118,29 @@ int main()
 	printf("\n");
 	printf("\n");
 
-	printf("Tree in inorder Form:");
+	printf("In inorder form: ");
 	inorder(root);
 	printf("\n");
 
-	printf("Tree in preorder form:");
+	printf("In preorder form: ");
 	preorder(root);
 	printf("\n");
 
-	printf("Tree in postorder form :");
+	printf("In postorder form: ");
 	postorder(root);
     printf("\n");
 
-    printf("\nCopy of binary tree 'Root' in preorder form:");
+    printf("\nCopy of binary tree 'Root' \n") ;
+
+    printf("\nIn preorder form: ");
 	copynode(root,copy_node);
-	printf("\n");
+
+    printf("\nIn inorder form: ");
+    inorder(copy_node);
+
+    printf("\nIn postorder form: ");
+    postorder(copy_node);
+
 
 	printf("\n\nNew tree (Root1): ");
 	preorder(root1);
