@@ -121,7 +121,7 @@ void insertbegin(int s)
 void insertend(int s)
 {
 	struct Node *temp=head;
-	struct Node*prev1;
+	struct Node* prev1;
 	while(temp!=NULL)
 	{
 	 prev1=temp;
@@ -140,34 +140,33 @@ void insertend(int s)
 void delete_node(int del)
 {
 	struct Node *temp=head;
-	struct Node *prev1;
 	if (head->data==del)
 	{
-	temp=head->next;
-	temp->prev=NULL;
+	if(head->next==NULL){
+		free(temp);
+		head=NULL;
+	}
+	else{
+		head->next->prev=NULL;
+		head=head->next;
+		free(temp);
+	}
+	}
+	else{
+	while(temp->next!=NULL){
+	if(temp->data==del){
+		temp->prev->next=temp->next;
+		temp->next->prev=temp->prev;
+		free(temp);
+	}
+	else temp=temp->next;
+	}
+	if(temp->data==del){
+	temp->prev->next=NULL;
 	free(temp);
 	}
-	else
-	temp=temp->next;
-	if(temp->next!=NULL)
-	{
-	while(temp->data!=del)
-	{   
-	    prev1=temp;
-	    temp=temp->next;
 	}
 	
-	struct Node *temp1=temp->next;
-	prev1->next=temp->next;
-	temp1->prev=temp->prev;
-	free(temp);
-	}
-	else
-	{
-	temp=temp->prev;
-	temp->next==NULL;
-	free(temp);
-	}
 	display();
 }
 
