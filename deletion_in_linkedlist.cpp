@@ -72,9 +72,6 @@ void delete_node(int num,int del)
     
 	else if(del<=num)
 	{
-	    while(i<del)
-	    {
-		printf("hello ");
 		prev=temp;
 		temp=temp->link;
 		i=i+1;
