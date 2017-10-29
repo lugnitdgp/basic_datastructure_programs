@@ -61,39 +61,24 @@ void displaylist()
 //to delete  a node	
 void delete_node(int num,int del)
 {
-	struct Node* temp=header;
-	struct Node* prev;
-	int i=1;
-	if(del==1)
-	{
-		header=temp->link;
-		free(temp);
-	}
-    
-	while(del<num&&i<del)
-	{
-		//printf("hello");
-		prev=temp;
-		temp=temp->link;
-		i=i+1;
-	}
-	prev->link=temp->link;
-	free(temp);
-	temp=header;
-	
-	if(num==del)
-	{
-		printf("byee");
-		while(temp!=NULL)
-		{
-		prev=temp;
-		temp=temp->link;	
-		}
-		prev->link=NULL;
-		free(temp);
-	}
-	
-	displaylist();
+    if(del < 1 || num < del)
+        return;
+
+    struct Node* temp = header;
+    struct Node* prev = header;
+
+    for(int i=1; i < del;i++){
+        prev = temp;
+        temp = temp->link;
+    }
+
+    if(prev == temp)
+        header = prev->link;
+    prev->link = temp->link;
+
+    free(temp);
+
+    displaylist();
 }
 
 
