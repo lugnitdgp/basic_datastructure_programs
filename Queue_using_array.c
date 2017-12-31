@@ -24,7 +24,7 @@ int isEmpty(struct queue *Queue)
 	return(Queue->size==0);
 }
 
-int isFULL(struct queue *Queue)
+int isFull(struct queue *Queue)
 {
 	return(Queue->size==Queue->capacity);
 }
