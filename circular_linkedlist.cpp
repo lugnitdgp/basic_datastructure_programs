@@ -1,72 +1,78 @@
-#include<stdio.h>
-#include<malloc.h>
+#include <iostream>
+
+using namespace std;
+
 //Declaring a node.
-struct Node
-{
-	int data; //data part of node.
-	struct Node *link; //pointer to next node.
+struct Node {
+    int data;           //data part of node.
+    struct Node* next;  //pointer to next node.
 };
 
-struct Node *header;  //First Node of list.(global)
+struct Node* createNode(int value) {
+    struct Node* node;
+    node = (struct Node*)malloc(sizeof(struct Node));  //allocating memory to node.
 
+    if (node == NULL) {
+        cout << "Overflow" << endl;
+        ;  //if there is no space in memory
+    } else {
+        node->data = value;
+        node->next = NULL;
+    }
 
-void createlist(int n)
-	{
-			struct Node *temp=header;	
-			temp=(struct Node*)malloc(sizeof(struct Node)); //allocating memory to first node.
-			if(temp==NULL)
-			printf("Overflow"); //if there is no space in memory
-			temp->link=NULL;
-			int i=1;
-			printf("Enter The Value Of Node%d: ",i);
-			scanf("%d",&temp->data);
-			if(header==NULL)
-			{
-				temp->link=NULL;
-				header=temp;
-			}
-	         i=i+1;
-		while(i<=n)
-		{
-			struct Node* temp1=temp;
-			temp=(struct Node*)malloc(sizeof(struct Node)); //allocating memory to ith node.
-			if(temp==NULL)
-			printf("Overflow");
-			printf("Enter The Value for Node%d: ",i);
-			scanf("%d",&temp->data);
-			temp1->link=temp;
-			temp->link=NULL;
-			i=i+1;
-		}
-	temp->link=header;
-	
-	}
+    return node;
+}
 
+struct Node* createList() {
+    struct Node* header = (struct Node*)malloc(sizeof(struct Node));  //allocating memory to node.
+    if (header == NULL) {
+        cout << "Overflow" << endl;  //if there is no space in memory
+    } else {
+        header->data = 0;
+        header->next = NULL;
+    }
+
+    return header;
+}
+
+void insert(struct Node*& list, int value) {
+    struct Node* v = list;
+
+    struct Node* n = createNode(value);
+    n->next = list;
+
+    if (list->next != NULL) {  //list is empty
+
+        while (v->next != list) {
+            v = v->next;
+            cout << v->data << endl;
+        }
+        v->next = n;
+    } else {
+        n->next = n;
+        list = n;
+    }
+}
 
 //display of linkedlist
-void displaylist()
-	{
-		struct Node* temp=header;
-		printf("\nElements Of List :");
-		printf("%d",temp->data);
-		temp=temp->link;
-		while(temp!=header)
-		{
-			printf("%d ",temp->data);
-			temp=temp->link;
-		}
-		
-	}
-
-
+void displaylist(struct Node* header) {
+    struct Node* v = header;
+    do {
+        cout << v->data << " ";
+        v = v->next;
+    } while (v != header);
+}
 
 //Main Body
-int main()
-{
-	int num;
-	printf("Enter The Number Of Nodes For Linkedlist: ");
-	scanf("%d",&num);
-	createlist(num);
-	displaylist();
-	return 0;
+int main() {
+    struct Node* list = createList();
+
+    insert(list, 3);
+    insert(list, 1);
+    insert(list, 7);
+    insert(list, 2);
+    insert(list, 9);
+
+    displaylist(list);
+    return 0;
 }
