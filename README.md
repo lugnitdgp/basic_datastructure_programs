@@ -1,2 +1,3 @@
-# basic_datastructure_programs
-# This repo consists of all programs related to basic data structures. 
+# Basic Datastructure Programns 
+
+This repo consists of some programs related to basic data structures. 
