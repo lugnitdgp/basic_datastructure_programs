@@ -4,7 +4,7 @@
 //structure of Queue
 struct queue
 {
-	int front,rear,size;
+	int front=-1,rear=-1,size=0;
 	unsigned capacity;
 	int *array;
 };
@@ -24,7 +24,7 @@ int isEmpty(struct queue *Queue)
 	return(Queue->size==0);
 }
 
-int isFULL(struct queue *Queue)
+int isFull(struct queue *Queue)
 {
 	return(Queue->size==Queue->capacity);
 }
@@ -36,7 +36,7 @@ void enqueue(struct queue *Queue,int n)
 	Queue->rear=(Queue->rear+1)%Queue->capacity;
 	Queue->array[Queue->rear]=n;
 	Queue->size=Queue->size+1;
-	printf("Enqueued Element%d",n);
+	printf("\nEnqueued Element%d",n);
 }
 
 int dequeue(struct queue *Queue)
@@ -71,7 +71,7 @@ int main()
 	enqueue(Queue,16);
 	
 	dequeue(Queue);
-	printf("Element At front %d\n\n",front(Queue));
-	printf("Element At Rear%d",rear(Queue));
+	printf("\nElement At front %d",front(Queue));
+	printf("\nElement At Rear %d",rear(Queue));
 	return 0;	
 }
