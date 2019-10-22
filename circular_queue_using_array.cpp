@@ -2,7 +2,7 @@
 #define MAXQ 100
 typedef struct
 {
-	int front ,rear;
+	int front=-1 ,rear=-1;
 	int items[MAXQ];
 	
 }queue;
@@ -35,8 +35,9 @@ int insert(queue *q,int x)
 		q->rear=0;
 	}
 	else
-	q->rear =(q->rear+1)%MAXQ;
+	   q->rear =(q->rear+1)%MAXQ;
 	q->items[q->rear] = x;
+	return 0;
 }
 
 int Delete(queue *q)
@@ -66,29 +67,30 @@ void display(queue *q)
 		printf("\nqueue empty");
 		return;
 	}
-	else
-	printf("\nElements In the Queue Are:\n");
-	if(q->rear>=q->front)
-	{
-		for(i=q->front;i<=q->rear;i++)
-		printf("%d\n",q->items[i]);
+	else{
+		printf("\nElements In the Queue Are:\n");
+		if(q->rear>=q->front)
+		{
+			for(i=q->front;i<=q->rear;i++)
+			printf("%d\n",q->items[i]);
+		}
+		else{
+			for(i=q->front;i<=MAXQ;i++)
+			printf("%d\n",q->items[i]);
+			for(i=0;i<=q->rear;i++)
+			printf("%d\n",q->items[i]);
+		}
 	}
-	else
-	for(i=q->front;i<=MAXQ;i++)
-	printf("%d\n",q->items[i]);
-	for(i=0;i<=q->rear;i++)
-	printf("%d\n",q->items[i]);
-	
 }
 
 int main()
 {
 	queue q;
 	int x;
-	char ch='1';
+	int ch;
 	q.front=-1;
 	q.rear=-1;
-		while(ch!='4')
+        do
 	{
 		printf("\n 1 - Insert");
 		printf("\n 2 - Delete");
@@ -96,30 +98,30 @@ int main()
 		printf("\n 4 - Quit");
 		printf("\nEnter your Choice :");
 		fflush(stdin);
-		scanf("%c",&ch);
+		scanf("%d",&ch);
 		
 		switch(ch)
 		{
-			case '1':
+			case 1:
 				printf("\nEnter The Element To Be inserted :");
 				scanf("%d",&x);
 				insert(&q,x);
 				break;
-				case '2':
-					x=Delete(&q);
-					printf("\nDeleted Element Is %d\n:",x);
-					break;
-					case '3':
-						display(&q);
-						break ;
-						case '4':
-							break;
-							default:
-								printf("\nYou Entered Wrong Choice.Try again!");
+			case 2:
+				x=Delete(&q);
+				printf("\nDeleted Element Is %d\n:",x);
+				break;
+			case 3:
+				display(&q);
+				break ;
+			case 4:
+				break;
+			default:
+				printf("\nYou Entered Wrong Choice.Try again!");
+				break;
 					
 		
 		}
-	}
+	}while(ch!=4);
 	return 0;
 }
-
