@@ -1,77 +1,80 @@
-#include<stdio.h>
-#include<malloc.h>
-#include<limits.h>
-//structure of Queue
-struct queue
-{
-	int front,rear,size;
-	unsigned capacity;
-	int *array;
-};
-
-struct queue *create(unsigned capacity)
-{
-struct queue *Queue=(struct queue*)malloc(sizeof(struct queue));
-Queue->capacity=capacity;
-Queue->front=Queue->size=0;
-Queue->rear=capacity-1;
-Queue->array=(int*)malloc(capacity*sizeof(int));
-return Queue;
-}
-
-int isEmpty(struct queue *Queue)
-{
-	return(Queue->size==0);
-}
-
-int isFULL(struct queue *Queue)
-{
-	return(Queue->size==Queue->capacity);
-}
-
-void enqueue(struct queue *Queue,int n)
-{
-	if(isFull(Queue))
-	return;
-	Queue->rear=(Queue->rear+1)%Queue->capacity;
-	Queue->array[Queue->rear]=n;
-	Queue->size=Queue->size+1;
-	printf("Enqueued Element%d",n);
-}
-
-int dequeue(struct queue *Queue)
-{
-	if (isEmpty(Queue))
-	return 0;
-	int item=Queue->array[Queue->front];
-	Queue->front=(Queue->front+1)%Queue->capacity;
-	Queue->size=Queue->size-1;
-	return(item);
-}
-
-int front(struct queue *Queue)
-{
-int item=Queue->array[Queue->front];
-return(item);	
-}
-
-int rear( struct queue *Queue)
-{
-	int item=Queue->array[Queue->rear];
-	return(item);
-}
+#include <stdio.h>
+#include<stdlib.h>
+#define MAX 50
+void insert();
+void delete();
+void display();
+int queue_array[MAX];
+int rear = - 1;
+int front = - 1;
 
 int main()
 {
-	struct queue *Queue=create(50);
-	enqueue(Queue,12);
-	enqueue(Queue,13);
-	enqueue(Queue,14);
-	enqueue(Queue,15);
-	enqueue(Queue,16);
-	
-	dequeue(Queue);
-	printf("Element At front %d\n\n",front(Queue));
-	printf("Element At Rear%d",rear(Queue));
-	return 0;	
+int choice;
+while (1)
+{
+printf("1.Insert element to queue n");
+printf("2.Delete element from queue n");
+printf("3.Display all elements of queue n");
+printf("4.Quit n");
+printf("Enter your choice : ");
+scanf("%d", &choice);
+switch(choice)
+{
+case 1:
+	insert();
+break;
+case 2:
+	delete();
+break;
+case 3:
+	display();
+break;
+case 4:
+	exit(1);
+default:
+printf("Wrong choice n");
+}
+}
+}
+void insert()
+{
+	int item;
+	if(rear == MAX - 1)
+	printf("Queue Overflow n");
+else
+{
+    if(front== - 1)
+	front = 0;
+	printf("Inset the element in queue : ");
+	scanf("%d", &item);
+	rear = rear + 1;
+	queue_array[rear] = item;
+}
+}
+void delete()
+{
+if(front == - 1 || front > rear)
+{
+printf("Queue Underflow n");
+return;
+}
+else
+{
+printf("Element deleted from queue is : %dn", queue_array[front]);
+front = front + 1;
+}
+}
+void display()
+{
+int i;
+if(front == - 1)
+	printf("Queue is empty n");
+else
+{
+	printf("Queue is : n");
+	for(i = front; i <= rear; i++)
+	printf("%d ", queue_array[i]);
+	printf("n");
+}
 }
